@@ -1,4 +1,4 @@
-0. Create Entity Diagram for table1 and table2 and share screenshot
+#0. Create Entity Diagram for table1 and table2 and share screenshot
 uploded the screenshot 
 
 #1. Prepare script to create table1 and table2 with primary key
