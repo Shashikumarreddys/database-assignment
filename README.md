@@ -1,13 +1,13 @@
-#0. Create Entity Diagram for table1 and table2 and share screenshot
+#0. Create Entity Diagram for table1 and table2 and share screenshot<br>
 uploded the screenshot 
-
-#1. Prepare script to create table1 and table2 with primary key
+<br>
+#1. Prepare script to create table1 and table2 with primary key<br>
 CREATE TABLE departments (
   dept_id SERIAL PRIMARY KEY,
   dept_name VARCHAR(100) NOT NULL,
   location VARCHAR(100)
 );
-
+<br>
 
 CREATE TABLE employees (
   emp_id SERIAL PRIMARY KEY,
@@ -18,26 +18,26 @@ CREATE TABLE employees (
   hire_date DATE,
   FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
 );
+<br>
 
-
-#2. Prepare script to add foreign key constraint on any one table
+#2. Prepare script to add foreign key constraint on any one table<br>
 ALTER TABLE employees ADD COLUMN manager_id INT;
 
 
 ALTER TABLE employees 
 ADD CONSTRAINT fk_manager 
 FOREIGN KEY (manager_id) REFERENCES employees(emp_id);
+<br>
 
-
-#3. Prepare script to add unique constraint to any one column
+#3. Prepare script to add unique constraint to any one column<br>
 ALTER TABLE employees 
 ADD CONSTRAINT uk_email UNIQUE (email);
 
 
 ALTER TABLE departments 
 ADD CONSTRAINT uk_dept_name UNIQUE (dept_name);
-
-#4. Prepare script to add index to any column
+<br>
+#4. Prepare script to add index to any column<br>
 CREATE INDEX idx_emp_name ON employees(emp_name);
 
 CREATE INDEX idx_emp_email ON employees(email);
@@ -47,8 +47,8 @@ CREATE INDEX idx_emp_salary ON employees(salary);
 CREATE INDEX idx_emp_dept_id ON employees(dept_id);
 
 CREATE INDEX idx_emp_hire_date_salary ON employees(hire_date, salary);
-
-#5. Create insert queries to add around 4 to 8 rows in both the tables
+<br>
+#5. Create insert queries to add around 4 to 8 rows in both the tables<br>
 INSERT INTO departments (dept_name, location) VALUES ('HR', 'New York');
 INSERT INTO departments (dept_name, location) VALUES ('IT', 'San Francisco');
 INSERT INTO departments (dept_name, location) VALUES ('Sales', 'Chicago');
@@ -62,8 +62,8 @@ INSERT INTO employees (emp_name, email, salary, dept_id, hire_date) VALUES ('Raj
 INSERT INTO employees (emp_name, email, salary, dept_id, hire_date) VALUES ('Ananya Gupta', 'ananya@example.com', 58000, 2, '2022-09-08');
 INSERT INTO employees (emp_name, email, salary, dept_id, hire_date) VALUES ('Vikram Verma', 'vikram@example.com', 48000, 3, '2023-04-22');
 INSERT INTO employees (emp_name, email, salary, dept_id, hire_date) VALUES ('Divya Iyer', 'divya@example.com', 62000, 1, '2021-08-30');
-
-#6. Prepare a select query using WHERE, 'NOT IN', LIKE and ORDER BY clause
+<br>
+#6. Prepare a select query using WHERE, 'NOT IN', LIKE and ORDER BY clause<br>
 SELECT * FROM employees WHERE salary > 50000 ORDER BY salary DESC;
 
 SELECT * FROM employees WHERE dept_id NOT IN (1, 3) ORDER BY emp_name;
@@ -71,8 +71,8 @@ SELECT * FROM employees WHERE dept_id NOT IN (1, 3) ORDER BY emp_name;
 SELECT * FROM employees WHERE emp_name LIKE '%Kumar%' ORDER BY hire_date;
 
 SELECT emp_name, email, salary FROM employees WHERE salary BETWEEN 48000 AND 55000 ORDER BY salary DESC;
-
-#7. Prepare a select query using GROUP BY and HAVING clause, with COUNT, SUM
+<br>
+#7. Prepare a select query using GROUP BY and HAVING clause, with COUNT, SUM<br>
 SELECT dept_id, COUNT(*) as employee_count, SUM(salary) as total_salary, AVG(salary) as avg_salary FROM employees GROUP BY dept_id;
 
 SELECT dept_id, COUNT(*) as employee_count FROM employees GROUP BY dept_id HAVING COUNT(*) > 1;
@@ -80,18 +80,18 @@ SELECT dept_id, COUNT(*) as employee_count FROM employees GROUP BY dept_id HAVIN
 SELECT dept_id, COUNT(*) as employee_count, SUM(salary) as total_salary FROM employees GROUP BY dept_id HAVING SUM(salary) > 100000 ORDER BY total_salary DESC;
 
 SELECT dept_id, AVG(salary) as avg_salary FROM employees GROUP BY dept_id HAVING AVG(salary) > 50000;
-
-#8. Prepare a INNER JOIN query between table1 and table2
+<br>
+#8. Prepare a INNER JOIN query between table1 and table2<br>
 SELECT e.emp_id, e.emp_name, e.email, e.salary, d.dept_name, d.location FROM employees e INNER JOIN departments d ON e.dept_id = d.dept_id ORDER BY e.emp_name;
 
 SELECT d.dept_name, COUNT(e.emp_id) as total_employees, SUM(e.salary) as total_salary FROM employees e INNER JOIN departments d ON e.dept_id = d.dept_id GROUP BY d.dept_name;
-
-#9. Prepare LEFT JOIN query between table1 and table2
+<br>
+#9. Prepare LEFT JOIN query between table1 and table2<br>
 SELECT d.dept_id, d.dept_name, d.location, e.emp_name, e.salary FROM departments d LEFT JOIN employees e ON d.dept_id = e.dept_id ORDER BY d.dept_name;
 
 SELECT d.dept_name, COUNT(e.emp_id) as employee_count FROM departments d LEFT JOIN employees e ON d.dept_id = e.dept_id GROUP BY d.dept_name ORDER BY employee_count DESC;
-
-#10. Prepare 5 insert and update statements on table 1, with COMMIT and ROLLBACK in between queries.
+<br>
+#10. Prepare 5 insert and update statements on table 1, with COMMIT and ROLLBACK in between queries.<br>
 BEGIN;
 
 INSERT INTO employees (emp_name, email, salary, dept_id, hire_date) VALUES ('Mohit Singh', 'mohit@example.com', 51000, 2, '2024-01-10');
