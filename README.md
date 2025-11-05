@@ -1,6 +1,7 @@
 #0. Create Entity Diagram for table1 and table2 and share screenshot<br>
 uploded the screenshot 
 <br>
+
 #1. Prepare script to create table1 and table2 with primary key<br>
 CREATE TABLE departments (
   dept_id SERIAL PRIMARY KEY,
