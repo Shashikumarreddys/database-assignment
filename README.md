@@ -38,6 +38,7 @@ ADD CONSTRAINT uk_email UNIQUE (email);
 ALTER TABLE departments 
 ADD CONSTRAINT uk_dept_name UNIQUE (dept_name);
 <br>
+
 #4. Prepare script to add index to any column<br>
 CREATE INDEX idx_emp_name ON employees(emp_name);
 
@@ -49,6 +50,7 @@ CREATE INDEX idx_emp_dept_id ON employees(dept_id);
 
 CREATE INDEX idx_emp_hire_date_salary ON employees(hire_date, salary);
 <br>
+
 #5. Create insert queries to add around 4 to 8 rows in both the tables<br>
 INSERT INTO departments (dept_name, location) VALUES ('HR', 'New York');
 INSERT INTO departments (dept_name, location) VALUES ('IT', 'San Francisco');
@@ -64,6 +66,7 @@ INSERT INTO employees (emp_name, email, salary, dept_id, hire_date) VALUES ('Ana
 INSERT INTO employees (emp_name, email, salary, dept_id, hire_date) VALUES ('Vikram Verma', 'vikram@example.com', 48000, 3, '2023-04-22');
 INSERT INTO employees (emp_name, email, salary, dept_id, hire_date) VALUES ('Divya Iyer', 'divya@example.com', 62000, 1, '2021-08-30');
 <br>
+
 #6. Prepare a select query using WHERE, 'NOT IN', LIKE and ORDER BY clause<br>
 SELECT * FROM employees WHERE salary > 50000 ORDER BY salary DESC;
 
@@ -73,6 +76,7 @@ SELECT * FROM employees WHERE emp_name LIKE '%Kumar%' ORDER BY hire_date;
 
 SELECT emp_name, email, salary FROM employees WHERE salary BETWEEN 48000 AND 55000 ORDER BY salary DESC;
 <br>
+
 #7. Prepare a select query using GROUP BY and HAVING clause, with COUNT, SUM<br>
 SELECT dept_id, COUNT(*) as employee_count, SUM(salary) as total_salary, AVG(salary) as avg_salary FROM employees GROUP BY dept_id;
 
@@ -82,16 +86,19 @@ SELECT dept_id, COUNT(*) as employee_count, SUM(salary) as total_salary FROM emp
 
 SELECT dept_id, AVG(salary) as avg_salary FROM employees GROUP BY dept_id HAVING AVG(salary) > 50000;
 <br>
+
 #8. Prepare a INNER JOIN query between table1 and table2<br>
 SELECT e.emp_id, e.emp_name, e.email, e.salary, d.dept_name, d.location FROM employees e INNER JOIN departments d ON e.dept_id = d.dept_id ORDER BY e.emp_name;
 
 SELECT d.dept_name, COUNT(e.emp_id) as total_employees, SUM(e.salary) as total_salary FROM employees e INNER JOIN departments d ON e.dept_id = d.dept_id GROUP BY d.dept_name;
 <br>
+
 #9. Prepare LEFT JOIN query between table1 and table2<br>
 SELECT d.dept_id, d.dept_name, d.location, e.emp_name, e.salary FROM departments d LEFT JOIN employees e ON d.dept_id = e.dept_id ORDER BY d.dept_name;
 
 SELECT d.dept_name, COUNT(e.emp_id) as employee_count FROM departments d LEFT JOIN employees e ON d.dept_id = e.dept_id GROUP BY d.dept_name ORDER BY employee_count DESC;
 <br>
+
 #10. Prepare 5 insert and update statements on table 1, with COMMIT and ROLLBACK in between queries.<br>
 BEGIN;
 
